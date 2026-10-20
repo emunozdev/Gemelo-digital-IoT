@@ -1,0 +1,15 @@
+# Forzar reconocimiento de archivos de cabecera (.h) como C++ en lugar de C
+*.h linguist-language=C++
+*.hpp linguist-language=C++
+*.cpp linguist-language=C++
+
+# Forzar reconocimiento de Python
+*.py linguist-language=Python
+
+# Excluir la carpeta de compilación de PlatformIO de las estadísticas de código
+.pio/* linguist-vendored
+.godot/* linguist-vendored
+
+# Tratar archivos de configuración de Godot o PlatformIO como documentación/data
+platformio.ini linguist-detectable=false
+project.godot linguist-detectable=false

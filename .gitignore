@@ -1,25 +1,56 @@
-# Godot 4.2+ specific ignores
-~*.dll
+# ==========================================
+# 1. Sistema Operativo y Editores
+# ==========================================
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
 
-# Godot 4+ specific ignores
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+
+# ==========================================
+# 2. Godot Engine (v4.x)
+# ==========================================
+# Archivos de importación local y caché de Godot
 .godot/
-.nomedia
 
-# Godot-specific ignores
-.import/
-export.cfg
-export_credentials.cfg
-*.tmp
+# Exportaciones e builds de Godot
+*.import
+export_presets.cfg
 
-# Imported translations (automatically generated from CSV files)
-*.translation
-
-# Mono-specific ignores
+# Si compilas usando Mono / C# en Godot:
 .mono/
-data_*/
-mono_crash.*.json
+*.csproj
+*.sln
 
-# Export outputs
-*.exe
-# Uncomment if your project does not version PCK files as runtime dependencies.
-# *.pck
+# ==========================================
+# 3. PlatformIO / ESP32 (Arduino C++)
+# ==========================================
+# Caché de compilación, firmwares compilados y librerías descargadas por PIO
+.pio/
+.pioenvs/
+.piolibdeps/
+.clangd/
+
+# ==========================================
+# 4. Python
+# ==========================================
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+venv/
+*.egg-info/
+.pytest_cache/
+
+# ==========================================
+# 5. Configuración y Archivos Sensibles
+# ==========================================
+.env
+*.log
+tmp/
