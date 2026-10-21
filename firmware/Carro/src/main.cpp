@@ -1,18 +1,15 @@
 #include <Arduino.h>
-
-// put function declarations here:
-int myFunction(int, int);
+#include <Wire.h>
+#include "Radar.h"
+#include "Network.h"
 
 void setup() {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
+   Network::wifi_init_softap();
+   Network::init_udp_socket();
+   Radar::inicializar();
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-}
-
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
+    Radar::update();
+    delay(10);
 }
