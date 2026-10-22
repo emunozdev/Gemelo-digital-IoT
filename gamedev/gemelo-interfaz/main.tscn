@@ -12,7 +12,7 @@ script = ExtResource("1_mapa")
 [node name="RenderizarObjectos" parent="." instance=ExtResource("2_objetos")]
 
 [node name="Carro" parent="." instance=ExtResource("3_carro")]
-position = Vector2(600, 400)
+position = Vector2(1000, 400)
 
 [node name="ConexionEsp32" parent="." instance=ExtResource("4_esp32")]
 

@@ -20,8 +20,8 @@ ESP32 (radar) --UDP :4242--> middleware_bridge.py --UDP :4243--> Godot (Telemetr
 
 Sin ESP32 también funciona: el puente publica una distancia simulada y el carro
 recorre el óvalo, así que la maqueta se puede enseñar sin hardware. Con la
-ventana del mapa abierta, `W`/`S` aceleran y frenan, `A`/`D` giran y `F1` fuerza
-el modo simulación.
+ventana del mapa abierta, `W`/`A`/`S`/`D` (o las flechas) mueven el carro en
+ocho direcciones y `F1` fuerza el modo simulación.
 
 ### Contrato de telemetría
 

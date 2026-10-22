@@ -54,7 +54,7 @@ func _informe() -> String:
 		lineas.append("Desfase     %5.2f m" % _carro.error_gemelo_m())
 		lineas.append("")
 
-	lineas.append("W/S acelerar y frenar · A/D girar · F1 forzar simulación")
+	lineas.append("WASD o flechas: moverse · F1 forzar simulación")
 	return "\n".join(lineas)
 
 

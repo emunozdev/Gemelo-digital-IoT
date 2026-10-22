@@ -12,12 +12,13 @@ extends Node2D
 @export var color_muro := Color(0.32, 0.26, 0.17)
 
 ## Obstáculos en metros; posición = esquina superior izquierda, tamaño = ancho/alto.
-## Colocados dentro y fuera del óvalo que recorre el gemelo, para que no lo
-## bloqueen al seguir la telemetría.
+## Todos quedan fuera del óvalo de 8x5 m que recorre el gemelo: un muro entre el
+## centro y la pista bloquearía al gemelo persiguiendo su propia telemetría.
 @export var obstaculos_m: Array[Rect2] = [
-	Rect2(Vector2(10.5, 6.5), Vector2(3.0, 1.5)),
-	Rect2(Vector2(8.5, 9.0), Vector2(2.0, 2.0)),
 	Rect2(Vector2(21.2, 2.0), Vector2(1.6, 3.0)),
+	Rect2(Vector2(1.2, 1.2), Vector2(2.0, 1.8)),
+	Rect2(Vector2(1.5, 12.6), Vector2(2.4, 2.0)),
+	Rect2(Vector2(19.0, 12.8), Vector2(3.2, 1.8)),
 ]
 
 

@@ -5,8 +5,8 @@ class_name MotorCarro2D
 ## Dos fuentes de control sobre el mismo cuerpo:
 ##  - TELEMETRÍA: sigue la pose que publica el ESP32 a través del middleware,
 ##    corrigiendo la posición de forma proporcional para no teletransportar.
-##  - TECLADO: modelo arcade de aceleración/fricción/giro, para probar el mapa
-##    cuando todavía no llega señal del carro real.
+##  - TECLADO: dirección directa, el carro va hacia donde se pulsa y mira hacia
+##    ahí. Sirve para probar el mapa cuando todavía no llega señal del carro.
 
 enum Modo { AUTO, TELEMETRIA, TECLADO }
 
@@ -14,14 +14,10 @@ enum Modo { AUTO, TELEMETRIA, TECLADO }
 ## Escala del mundo: 1 metro real son N pixeles del mapa.
 @export var pixeles_por_metro: float = 50.0
 
-@export_group("Fisica")
-@export var aceleracion: float = 3.2
+@export_group("Conduccion")
 @export var velocidad_maxima: float = 6.0
-@export var velocidad_retroceso: float = 2.5
-@export var frenado: float = 6.5
-@export var friccion: float = 1.6
-## Grados por segundo de giro a velocidad maxima.
-@export var giro_maximo: float = 140.0
+## Suavizado del control por teclado, en 1/s. Más alto, más inmediato.
+@export var respuesta_teclado: float = 10.0
 
 @export_group("Gemelo")
 @export var modo: Modo = Modo.AUTO
@@ -60,7 +56,7 @@ func _physics_process(delta: float) -> void:
 	if modo_activo == Modo.TELEMETRIA:
 		_seguir_telemetria(delta)
 	else:
-		_conducir_teclado(delta)
+		_conducir_direccional(delta)
 
 	move_and_slide()
 
@@ -95,23 +91,14 @@ func _seguir_telemetria(delta: float) -> void:
 	rumbo = _acercar_angulo(rumbo, deg_to_rad(Telemetria.rumbo_grados), 1.0 - exp(-ganancia_rumbo * delta))
 
 
-func _conducir_teclado(delta: float) -> void:
-	var acelerador := Input.get_axis("retroceder", "acelerar")
-	var timon := Input.get_axis("girar_izquierda", "girar_derecha")
-
-	if acelerador > 0.0:
-		velocidad = minf(velocidad + aceleracion * acelerador * delta, velocidad_maxima)
-	elif acelerador < 0.0:
-		velocidad = maxf(velocidad + frenado * acelerador * delta, -velocidad_retroceso)
-	else:
-		var perdida := friccion * delta
-		velocidad = 0.0 if absf(velocidad) <= perdida else velocidad - signf(velocidad) * perdida
-
-	if not is_zero_approx(velocidad):
-		var agarre := clampf(absf(velocidad) / velocidad_maxima, 0.0, 1.0)
-		rumbo += deg_to_rad(timon * giro_maximo) * agarre * delta * signf(velocidad)
-
-	velocity = Vector2(sin(rumbo), -cos(rumbo)) * velocidad * pixeles_por_metro
+func _conducir_direccional(delta: float) -> void:
+	var direccion := Input.get_vector("mover_izquierda", "mover_derecha",
+			"mover_arriba", "mover_abajo")
+	var objetivo := direccion * velocidad_maxima * pixeles_por_metro
+	velocity = velocity.lerp(objetivo, 1.0 - exp(-respuesta_teclado * delta))
+	velocidad = velocity.length() / pixeles_por_metro
+	if direccion != Vector2.ZERO:
+		rumbo = atan2(direccion.x, -direccion.y)
 
 
 func _animar(delta: float) -> void:
