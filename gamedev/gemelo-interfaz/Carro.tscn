@@ -1,23 +1,22 @@
-[gd_scene format=3 uid="uid://bs5g6yiyy2rrt"]
+[gd_scene load_steps=4 format=3 uid="uid://bs5g6yiyy2rrt"]
 
-[ext_resource type="Script" uid="uid://crnk837ptrlfh" path="res://MoveCar.gd" id="1_k3h37"]
+[ext_resource type="Script" path="res://motor/MotorCarro2D.gd" id="1_motor"]
 [ext_resource type="Texture2D" uid="uid://ct5swso5xiuff" path="res://resources/car.png" id="2_vbmwl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j6drs"]
-size = Vector2(90, 71)
+size = Vector2(84, 52)
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=2077400010]
+[node name="Carro" type="CharacterBody2D"]
+z_index = 5
 position = Vector2(576, 326)
-script = ExtResource("1_k3h37")
+script = ExtResource("1_motor")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=352491578]
-position = Vector2(-187, -38)
+[node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_vbmwl")
-hframes = 73
+hframes = 12
 vframes = 8
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=787028976]
+[node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=162838760]
-position = Vector2(-187, -35.5)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_j6drs")

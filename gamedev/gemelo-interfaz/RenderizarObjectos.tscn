@@ -1,3 +1,6 @@
-[gd_scene format=3 uid="uid://b1iekvn68p84u"]
+[gd_scene load_steps=2 format=3 uid="uid://b1iekvn68p84u"]
 
-[node name="Node2D" type="Node2D" unique_id=1501913915]
+[ext_resource type="Script" path="res://motor/RenderizarObjetos.gd" id="1_objetos"]
+
+[node name="RenderizarObjectos" type="Node2D"]
+script = ExtResource("1_objetos")

@@ -1,3 +1,6 @@
-[gd_scene format=3 uid="uid://bq5yqoc1fvqd"]
+[gd_scene load_steps=2 format=3 uid="uid://bq5yqoc1fvqd"]
 
-[node name="Node2D" type="Node2D" unique_id=1781952400]
+[ext_resource type="Script" path="res://motor/ReceptorUdp.gd" id="1_udp"]
+
+[node name="ConexionEsp32" type="Node"]
+script = ExtResource("1_udp")
