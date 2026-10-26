@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://cbt1sd6jsh6ty"]
+
+[ext_resource type="Script" path="res://motor/Mapa.gd" id="1_mapa"]
+[ext_resource type="PackedScene" uid="uid://b1iekvn68p84u" path="res://RenderizarObjectos.tscn" id="2_objetos"]
+[ext_resource type="PackedScene" uid="uid://bs5g6yiyy2rrt" path="res://Carro.tscn" id="3_carro"]
+[ext_resource type="PackedScene" uid="uid://bq5yqoc1fvqd" path="res://ConexionEsp32.tscn" id="4_esp32"]
+[ext_resource type="Script" path="res://motor/Hud.gd" id="5_hud"]
+
+[node name="Mapa2D" type="Node2D"]
+script = ExtResource("1_mapa")
+
+[node name="RenderizarObjectos" parent="." instance=ExtResource("2_objetos")]
+
+[node name="Carro" parent="." instance=ExtResource("3_carro")]
+position = Vector2(1000, 400)
+
+[node name="ConexionEsp32" parent="." instance=ExtResource("4_esp32")]
+
+[node name="Hud" type="CanvasLayer" parent="."]
+script = ExtResource("5_hud")
+carro_ruta = NodePath("../Carro")

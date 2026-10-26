@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://bs5g6yiyy2rrt"]
+
+[ext_resource type="Script" path="res://motor/MotorCarro2D.gd" id="1_motor"]
+[ext_resource type="Texture2D" uid="uid://ct5swso5xiuff" path="res://resources/car.png" id="2_vbmwl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j6drs"]
+size = Vector2(84, 52)
+
+[node name="Carro" type="CharacterBody2D"]
+z_index = 5
+position = Vector2(576, 326)
+script = ExtResource("1_motor")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_vbmwl")
+hframes = 12
+vframes = 8
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_j6drs")
