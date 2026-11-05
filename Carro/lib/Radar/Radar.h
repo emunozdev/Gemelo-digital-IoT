@@ -1,8 +1,4 @@
 #pragma once
-// ============================================================================
-//  Radar - Driver de la pantalla OLED SSD1306 (vista del radar).
-//  Solo dibuja lo que se le da. Si la pantalla no responde, el sistema sigue.
-// ============================================================================
 #include <Arduino.h>
 #include <Wire.h>
 #include <Adafruit_GFX.h>

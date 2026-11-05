@@ -1,8 +1,4 @@
 #pragma once
-// ============================================================================
-//  Buzzer - Driver del buzzer. pitar() NO bloquea: un timer de software de
-//  FreeRTOS lo apaga cuando vence el tiempo (sin delay, sin polling).
-// ============================================================================
 #include <Arduino.h>
 
 class Buzzer {

@@ -1,10 +1,5 @@
 #pragma once
-// ============================================================================
-//  Buzon<T> - "Ultimo valor" compartido entre tareas (cola de largo 1).
-//   - publicar(): sobreescribe, nunca bloquea (el productor no espera a nadie).
-//   - leer():     lo copia SIN quitarlo, asi varias tareas leen el mismo dato.
-//  Es thread-safe: FreeRTOS protege la copia. No hacen falta mutex ni "volatile".
-// ============================================================================
+
 #include "freertos/FreeRTOS.h"
 #include "freertos/queue.h"
 

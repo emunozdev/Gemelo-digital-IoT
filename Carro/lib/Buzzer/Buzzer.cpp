@@ -19,5 +19,5 @@ void Buzzer::inicializar() {
 void Buzzer::pitar(uint16_t ms) {
     if (!s_timer) return;
     digitalWrite(Pines::BUZZER, HIGH);
-    xTimerChangePeriod(s_timer, pdMS_TO_TICKS(ms), 0);   // reprograma y arranca el timer
+    xTimerChangePeriod(s_timer, pdMS_TO_TICKS(ms), 0);   
 }

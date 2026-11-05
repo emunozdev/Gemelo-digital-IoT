@@ -16,7 +16,7 @@ static const char* TAG = "NET";
 
 static int s_sock = -1;
 static struct sockaddr_in s_dest;
-static volatile uint32_t s_descartes = 0;   // solo los modifica quien llama a enviar() (una tarea)
+static volatile uint32_t s_descartes = 0;   
 static volatile uint32_t s_errores   = 0;
 
 static void wifiEventHandler(void*, esp_event_base_t base, int32_t id, void* data) {
@@ -82,8 +82,6 @@ bool Network::iniciarUDP() {
 bool Network::enviar(const void* datos, size_t len) {
     if (s_sock < 0) return false;
 
-    // MSG_DONTWAIT: si el stack WiFi esta lleno, descartamos en vez de bloquear.
-    // Para telemetria en vivo un dato viejo no sirve; mejor perderlo que atrasar los siguientes.
     const int n = sendto(s_sock, datos, len, MSG_DONTWAIT, (struct sockaddr*)&s_dest, sizeof(s_dest));
     if (n < 0) {
         if (errno == ENOMEM || errno == EAGAIN || errno == EWOULDBLOCK) s_descartes++;

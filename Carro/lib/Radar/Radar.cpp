@@ -31,7 +31,6 @@ void Radar::dibujar(const Muestra& m, Movimiento mov, bool alerta) {
     d.setTextSize(1);
     d.setTextColor(SSD1306_WHITE);
 
-    // Texto (columna izquierda)
     d.setCursor(0, 0);  d.print(alerta ? "ALERTA!" : "Escaneo");
     d.setCursor(0, 14);
     if (m.dist == DIST_SIN_ECO) { d.print("D: --"); }
@@ -40,7 +39,6 @@ void Radar::dibujar(const Muestra& m, Movimiento mov, bool alerta) {
     d.setCursor(0, 38); d.print(NOMBRES[(uint8_t)mov]);
     d.setCursor(0, 54); d.print("#"); d.print((int)m.seq);
 
-    // Radar semicircular (derecha): 0 grados = izquierda, 90 = arriba, 180 = derecha
     const int cx = 96, cy = 58, r = 30;
     for (int a = 0; a <= 180; a += 6) {
         const float th = radians(a);
@@ -51,7 +49,7 @@ void Radar::dibujar(const Muestra& m, Movimiento mov, bool alerta) {
     const float th = radians(180 - (int)m.angulo);
     d.drawLine(cx, cy, cx + (int)(r * cosf(th)), cy - (int)(r * sinf(th)), SSD1306_WHITE);
 
-    if (m.dist != DIST_SIN_ECO) {                       // punto en la distancia detectada (escala 0..100 cm)
+    if (m.dist != DIST_SIN_ECO) {                       
         const int dd = (m.dist > 100) ? 100 : (int)m.dist;
         const float rr = r * dd / 100.0f;
         d.fillCircle(cx + (int)(rr * cosf(th)), cy - (int)(rr * sinf(th)), 2, SSD1306_WHITE);
