@@ -1,21 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://cbt1sd6jsh6ty"]
+[gd_scene format=3 uid="uid://cbt1sd6jsh6ty"]
 
-[ext_resource type="Script" path="res://motor/Mapa.gd" id="1_mapa"]
+[ext_resource type="Script" uid="uid://74hqq8gqlsdh" path="res://motor/Mapa.gd" id="1_mapa"]
 [ext_resource type="PackedScene" uid="uid://b1iekvn68p84u" path="res://RenderizarObjectos.tscn" id="2_objetos"]
 [ext_resource type="PackedScene" uid="uid://bs5g6yiyy2rrt" path="res://Carro.tscn" id="3_carro"]
 [ext_resource type="PackedScene" uid="uid://bq5yqoc1fvqd" path="res://ConexionEsp32.tscn" id="4_esp32"]
-[ext_resource type="Script" path="res://motor/Hud.gd" id="5_hud"]
+[ext_resource type="Script" uid="uid://bjaf63nkpgwvc" path="res://motor/Hud.gd" id="5_hud"]
 
-[node name="Mapa2D" type="Node2D"]
+[node name="Mapa2D" type="Node2D" unique_id=632790089]
 script = ExtResource("1_mapa")
 
-[node name="RenderizarObjectos" parent="." instance=ExtResource("2_objetos")]
+[node name="RenderizarObjectos" parent="." unique_id=529234044 instance=ExtResource("2_objetos")]
 
-[node name="Carro" parent="." instance=ExtResource("3_carro")]
+[node name="Carro" parent="." unique_id=116678637 instance=ExtResource("3_carro")]
 position = Vector2(1000, 400)
 
-[node name="ConexionEsp32" parent="." instance=ExtResource("4_esp32")]
+[node name="ConexionEsp32" parent="." unique_id=1614489748 instance=ExtResource("4_esp32")]
 
-[node name="Hud" type="CanvasLayer" parent="."]
+[node name="Hud" type="CanvasLayer" parent="." unique_id=97713734]
 script = ExtResource("5_hud")
-carro_ruta = NodePath("../Carro")
