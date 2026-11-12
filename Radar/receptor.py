@@ -54,6 +54,12 @@ def main():
         js = json.dumps(payload)
         print(f"[{addr[0]}] seq={payload['seq']} muestras={payload['count']}")
 
+        detectados = [s for s in payload["samples"] if s["detected"]]
+        if detectados:
+            cercano = min(detectados, key=lambda s: s["distance_cm"])
+            print(f"   -> {len(detectados)} detecciones, más cercana: "
+                f"{cercano['distance_cm']} cm a {cercano['angle']}°")
+
         tx.sendto(js.encode("utf-8"), GODOT_ADDR)
         if SAVE_FILE:
             with open(SAVE_FILE, "w", encoding="utf-8") as f:
